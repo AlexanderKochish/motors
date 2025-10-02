@@ -1,11 +1,11 @@
 import { galleryFilter } from './gallery/gallery'
 import { headerManager } from './header/header'
 import { preloadCriticalImages } from './helpers/preloadCriticalImages'
-import { hubspotService } from './hubspot/hubspot'
 import { animateCounters } from './initScrollAnimations/animateCounters'
 import { initScrollAnimations } from './initScrollAnimations/initScrollAnimations'
 import { modalManager } from './modal/modal'
 import { testimonialsSlider } from './testimonials/testimonials'
+import { hubspotService } from './services/hubspot'
 
 document.addEventListener('DOMContentLoaded', function () {
   // Инициализация менеджеров
@@ -14,60 +14,69 @@ document.addEventListener('DOMContentLoaded', function () {
   if (modalManager && modalManager.init) modalManager.init()
   if (galleryFilter && galleryFilter.init) galleryFilter.init()
 
-  // Общая функция обработки форм
   const handleFormSubmit = async (form, formType = 'main') => {
-    // Собираем данные формы
     const formData = {
       firstname: form.querySelector('input[type="text"]')?.value,
       phone: form.querySelector('input[type="tel"]')?.value,
       service_type: form.querySelector('select')?.value,
       message: form.querySelector('textarea')?.value,
-      source: formType, // 'main' или 'modal'
+      source: formType,
+    }
+
+    if (!formData.firstname || !formData.phone) {
+      alert('Пожалуйста, заполните обязательные поля: Имя и Телефон')
+      return
     }
 
     try {
-      // Отправляем в HubSpot
+      const submitBtn = form.querySelector('.submit-btn')
+      submitBtn.textContent = 'Sending...'
+      submitBtn.disabled = true
+
       await hubspotService.submitAppointmentForm(formData)
 
-      // Показываем успешное сообщение
+      console.log('Форма успешно отправлена в HubSpot')
+
       if (formType === 'modal') {
-        modalManager.showSuccessMessage(
-          'Спасибо! Мы скоро вам перезвоним для подтверждения записи.'
-        )
-        // Закрываем модальное окно через 3 секунды
+        if (modalManager.showSuccessMessage) {
+          modalManager.showSuccessMessage(
+            'Thank you! We will call you back soon to confirm your appointment.'
+          )
+        } else {
+          alert(
+            'Thank you! We will call you back soon to confirm your appointment.'
+          )
+        }
+
         setTimeout(() => {
           if (modalManager.hideModal) {
             modalManager.hideModal()
           }
         }, 3000)
       } else {
-        modalManager.showSuccessMessage(
-          'Спасибо! Мы скоро вам перезвоним для подтверждения записи.'
+        alert(
+          'Thank you! We will call you back soon to confirm your appointment.'
         )
       }
 
-      // Очищаем форму
       form.reset()
     } catch (error) {
-      console.error('HubSpot form error:', error)
-      // Fallback: показываем обычное сообщение
-      if (formType === 'modal') {
-        modalManager.showSuccessMessage(
-          'Спасибо! Мы скоро вам перезвоним для подтверждения записи.'
-        )
-        setTimeout(() => {
-          if (modalManager.hideModal) {
-            modalManager.hideModal()
-          }
-        }, 3000)
-      } else {
-        alert('Спасибо! Мы скоро вам перезвоним для подтверждения записи.')
-      }
+      console.error('Error to sended form:', error)
+
+      alert(
+        'Thank you! We have received your request and will call you back soon.'
+      )
       form.reset()
+    } finally {
+      // Восстанавливаем кнопку
+      const submitBtn = form.querySelector('.submit-btn')
+      if (submitBtn) {
+        submitBtn.textContent = 'Book Appointment'
+        submitBtn.disabled = false
+      }
     }
   }
 
-  // Обработчик основной формы
   const appointmentForm = document.querySelector('.appointment-form')
   if (appointmentForm) {
     appointmentForm.addEventListener('submit', async function (e) {
@@ -76,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 
-  // Обработчик модальной формы
   const modalForm = document.querySelector('.modal-form')
   if (modalForm) {
     modalForm.addEventListener('submit', async function (e) {
@@ -85,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 
-  // Запуск анимации счетчиков при скролле
   const statsObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -114,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 
-  // Маска для телефона (для всех форм)
   const phoneInputs = document.querySelectorAll('input[type="tel"]')
   phoneInputs.forEach((phoneInput) => {
     phoneInput.addEventListener('input', function (e) {
@@ -130,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   })
 
-  // Плавная прокрутка для якорных ссылок
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault()
@@ -145,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 })
 
-// Остальной код без изменений
 window.addEventListener('resize', () => {
   const navMenu = document.querySelector('.nav-menu')
   const navToggle = document.querySelector('.nav-toggle')

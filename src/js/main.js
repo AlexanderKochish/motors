@@ -1,11 +1,11 @@
 import { galleryFilter } from './gallery/gallery'
 import { headerManager } from './header/header'
 import { preloadCriticalImages } from './helpers/preloadCriticalImages'
+import { hubspotService } from './hubspot/hubspot'
 import { animateCounters } from './initScrollAnimations/animateCounters'
 import { initScrollAnimations } from './initScrollAnimations/initScrollAnimations'
 import { modalManager } from './modal/modal'
 import { testimonialsSlider } from './testimonials/testimonials'
-import { hubspotService } from './services/hubspot'
 
 document.addEventListener('DOMContentLoaded', function () {
   // Инициализация менеджеров

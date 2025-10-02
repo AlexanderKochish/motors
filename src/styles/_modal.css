@@ -1,0 +1,336 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-container {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  transform: scale(0.7);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.modal-close:hover {
+  color: #ff4444;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-title {
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  background: linear-gradient(45deg, #ffd700, #ff4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Адаптивность для модалки */
+@media (max-width: 768px) {
+  .modal-container {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .modal-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* Стили для формы в модалке */
+.modal-form {
+  width: 100%;
+}
+
+.modal-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.modal-form .form-group input,
+.modal-form .form-group select,
+.modal-form .form-group textarea {
+  width: 100%;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.modal-form .form-group input:focus,
+.modal-form .form-group select:focus,
+.modal-form .form-group textarea:focus {
+  outline: none;
+  border-color: #ffd700;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.modal-form .form-group input::placeholder,
+.modal-form .form-group textarea::placeholder {
+  color: #888;
+}
+
+/* Стили для селекта */
+.modal-form .form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffd700' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 16px;
+  padding-right: 45px;
+  cursor: pointer;
+}
+
+.modal-form .form-group select option {
+  background: #2a2a2a;
+  color: white;
+  padding: 10px;
+}
+
+/* Стили для текстовой области */
+.modal-form .form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+/* Стили для кнопки отправки */
+.modal-form .submit-btn {
+  width: 100%;
+  background: linear-gradient(45deg, #ff4444, #ff6666);
+  color: white;
+  border: none;
+  padding: 18px;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.modal-form .submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 68, 68, 0.4);
+}
+
+.modal-form .submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Стили для успешного сообщения */
+.success-message {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.success-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: bounce 0.6s ease;
+}
+
+.success-message p {
+  color: #ccc;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  font-size: 1.1rem;
+}
+
+/* Анимация для успешного сообщения */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Состояния валидации */
+.modal-form .form-group input:invalid:not(:focus):not(:placeholder-shown),
+.modal-form .form-group select:invalid:not(:focus) {
+  border-color: #ff4444;
+  background: rgba(255, 68, 68, 0.1);
+}
+
+.modal-form .form-group input:valid:not(:focus):not(:placeholder-shown),
+.modal-form .form-group select:valid:not(:focus) {
+  border-color: #00ff88;
+  background: rgba(0, 255, 136, 0.1);
+}
+
+/* Адаптивность для модальной формы */
+@media (max-width: 768px) {
+  .modal-form .form-group input,
+  .modal-form .form-group select,
+  .modal-form .form-group textarea {
+    padding: 12px 16px;
+    font-size: 16px; /* Убираем zoom на iOS */
+  }
+
+  .modal-form .submit-btn {
+    padding: 16px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-form .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .modal-form .form-group input,
+  .modal-form .form-group select,
+  .modal-form .form-group textarea {
+    padding: 10px 14px;
+  }
+}
+
+/* Улучшение для мобильного ввода */
+@media (max-width: 768px) {
+  .modal-form input[type='tel'],
+  .modal-form input[type='text'] {
+    /* Улучшаем опыт на мобильных */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+}
+
+.rating-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rating-label {
+  color: #ccc;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.stars {
+  display: flex;
+  gap: 0.2rem;
+  direction: rtl; /* Для правильного порядка звезд */
+}
+
+.stars input {
+  display: none;
+}
+
+.stars label {
+  font-size: 2rem;
+  color: #444;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.stars label:hover,
+.stars label:hover ~ label {
+  color: #ffd700;
+}
+
+.stars input:checked ~ label {
+  color: #ffd700;
+}
+
+.stars input:checked + label {
+  color: #ffd700;
+}
+
+/* Анимация для звезд при наведении */
+.stars:hover input:checked ~ label {
+  color: #ffd700;
+}
+
+/* Стили для контейнеров форм */
+.modal-form-container {
+  transition: opacity 0.3s ease;
+}
+
+/* Успешное сообщение для отзывов */
+.review-success .success-icon {
+  color: #ffd700;
+}
+
+/* Адаптивность для рейтинга */
+@media (max-width: 480px) {
+  .rating-selector {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .stars label {
+    font-size: 1.8rem;
+  }
+}

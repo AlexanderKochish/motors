@@ -1,7 +1,7 @@
 export class HubSpotService {
   constructor() {
     this.portalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID
-    this.formId = import.meta.env.VITE_HUBSPOT_APPOINTMENT_FORM_ID
+    this.formId = import.meta.env.VITE_HUBSPOT_FORM_ID
     this.accessToken = import.meta.env.VITE_HUBSPOT_ACCESS_TOKEN
   }
 

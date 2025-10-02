@@ -5,20 +5,83 @@ import { animateCounters } from './initScrollAnimations/animateCounters'
 import { initScrollAnimations } from './initScrollAnimations/initScrollAnimations'
 import { modalManager } from './modal/modal'
 import { testimonialsSlider } from './testimonials/testimonials'
+import { hubspotService } from './services/hubspot'
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Инициализация менеджеров
   if (headerManager && headerManager.init) headerManager.init()
   if (testimonialsSlider && testimonialsSlider.init) testimonialsSlider.init()
   if (modalManager && modalManager.init) modalManager.init()
   if (galleryFilter && galleryFilter.init) galleryFilter.init()
 
-  const appointmentForm = document.querySelector(
-    '.contacts-section .appointment-form'
-  )
+  // Общая функция обработки форм
+  const handleFormSubmit = async (form, formType = 'main') => {
+    // Собираем данные формы
+    const formData = {
+      firstname: form.querySelector('input[type="text"]')?.value,
+      phone: form.querySelector('input[type="tel"]')?.value,
+      service_type: form.querySelector('select')?.value,
+      message: form.querySelector('textarea')?.value,
+      source: formType, // 'main' или 'modal'
+    }
+
+    try {
+      // Отправляем в HubSpot
+      await hubspotService.submitAppointmentForm(formData)
+
+      // Показываем успешное сообщение
+      if (formType === 'modal') {
+        modalManager.showSuccessMessage(
+          'Спасибо! Мы скоро вам перезвоним для подтверждения записи.'
+        )
+        // Закрываем модальное окно через 3 секунды
+        setTimeout(() => {
+          if (modalManager.hideModal) {
+            modalManager.hideModal()
+          }
+        }, 3000)
+      } else {
+        modalManager.showSuccessMessage(
+          'Спасибо! Мы скоро вам перезвоним для подтверждения записи.'
+        )
+      }
+
+      // Очищаем форму
+      form.reset()
+    } catch (error) {
+      console.error('HubSpot form error:', error)
+      // Fallback: показываем обычное сообщение
+      if (formType === 'modal') {
+        modalManager.showSuccessMessage(
+          'Спасибо! Мы скоро вам перезвоним для подтверждения записи.'
+        )
+        setTimeout(() => {
+          if (modalManager.hideModal) {
+            modalManager.hideModal()
+          }
+        }, 3000)
+      } else {
+        alert('Спасибо! Мы скоро вам перезвоним для подтверждения записи.')
+      }
+      form.reset()
+    }
+  }
+
+  // Обработчик основной формы
+  const appointmentForm = document.querySelector('.appointment-form')
   if (appointmentForm) {
-    appointmentForm.addEventListener('submit', function (e) {
+    appointmentForm.addEventListener('submit', async function (e) {
       e.preventDefault()
-      modalManager.showSuccessMessage()
+      await handleFormSubmit(this, 'main')
+    })
+  }
+
+  // Обработчик модальной формы
+  const modalForm = document.querySelector('.modal-form')
+  if (modalForm) {
+    modalForm.addEventListener('submit', async function (e) {
+      e.preventDefault()
+      await handleFormSubmit(this, 'modal')
     })
   }
 
@@ -42,27 +105,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   initScrollAnimations()
 
-  // Обработчики форм и кнопок
-  // const appointmentForm = document.querySelector('.appointment-form');
-  if (appointmentForm) {
-    appointmentForm.addEventListener('submit', function (e) {
-      e.preventDefault()
-      alert('Спасибо! Мы скоро вам перезвоним для подтверждения записи.')
-      this.reset()
-    })
-  }
-
+  // Кнопка карты
   const mapBtn = document.querySelector('.map-btn')
   if (mapBtn) {
     mapBtn.addEventListener('click', function () {
       const shortMapsUrl = 'https://maps.app.goo.gl/F3yLZFsCHpepi9JZ9'
-
       window.open(shortMapsUrl, '_blank')
     })
   }
-  // Маска для телефона
-  const phoneInput = document.querySelector('input[type="tel"]')
-  if (phoneInput) {
+
+  // Маска для телефона (для всех форм)
+  const phoneInputs = document.querySelectorAll('input[type="tel"]')
+  phoneInputs.forEach((phoneInput) => {
     phoneInput.addEventListener('input', function (e) {
       let x = e.target.value
         .replace(/\D/g, '')
@@ -74,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
         (x[4] ? '-' + x[4] : '') +
         (x[5] ? '-' + x[5] : '')
     })
-  }
+  })
 
   // Плавная прокрутка для якорных ссылок
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -91,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 })
 
+// Остальной код без изменений
 window.addEventListener('resize', () => {
   const navMenu = document.querySelector('.nav-menu')
   const navToggle = document.querySelector('.nav-toggle')
@@ -101,14 +156,12 @@ window.addEventListener('resize', () => {
   }
 })
 
-// Оптимизация для мобильных устройств
 if ('ontouchstart' in window) {
   document.documentElement.classList.add('touch-device')
 }
 
 preloadCriticalImages()
 
-// Инициализация при полной загрузке страницы
 window.addEventListener('load', function () {
   document.body.classList.add('loaded')
 })

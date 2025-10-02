@@ -1,14 +1,13 @@
 export class HubSpotService {
-  constructor(portalId, formId) {
-    this.portalId = portalId
-    this.formId = formId
-    this.baseUrl = 'https://api.hsforms.com/submissions/v3/integration/submit'
+  constructor() {
+    this.portalId = import.meta.env.VITE_HUBSPOT_PORTAL_ID
+    this.baseUrl = 'https://app-eu1.hubspot.com/submissions'
   }
 
-  async submitForm(formData) {
+  async submitForm(formId, formData) {
     try {
       const response = await fetch(
-        `${this.baseUrl}/${this.portalId}/${this.formId}`,
+        `${this.baseUrl}/${this.portalId}/form/${formId}/submissions`,
         {
           method: 'POST',
           headers: {
@@ -25,26 +24,43 @@ export class HubSpotService {
       )
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        throw new Error(`HubSpot error: ${response.status}`)
       }
 
       return await response.json()
     } catch (error) {
-      console.error('HubSpot submission error:', error)
+      console.error('HubSpot submission failed:', error)
       throw error
     }
   }
 
   mapFormData(data) {
-    return Object.entries(data).map(([name, value]) => ({
-      name,
-      value: value || '',
-    }))
+    const fields = []
+
+    if (data.firstname) {
+      fields.push({ name: 'firstname', value: data.firstname })
+    }
+    if (data.phone) {
+      fields.push({ name: 'phone', value: data.phone })
+    }
+    if (data.service_type) {
+      fields.push({ name: 'service_type', value: data.service_type })
+    }
+    if (data.message) {
+      fields.push({ name: 'message', value: data.message })
+    }
+    if (data.source) {
+      fields.push({ name: 'lead_source', value: data.source })
+    }
+
+    return fields
+  }
+
+  // Для обеих форм appointments
+  async submitAppointmentForm(formData) {
+    const formId = import.meta.env.VITE_HUBSPOT_FORM_ID
+    return await this.submitForm(formId, formData)
   }
 }
 
-// Создаем инстанс (данные из .env)
-export const hubspot = new HubSpotService(
-  import.meta.env.VITE_HUBSPOT_PORTAL_ID,
-  import.meta.env.VITE_HUBSPOT_FORM_ID
-)
+export const hubspotService = new HubSpotService()

@@ -5,7 +5,7 @@ import { animateCounters } from './initScrollAnimations/animateCounters'
 import { initScrollAnimations } from './initScrollAnimations/initScrollAnimations'
 import { modalManager } from './modal/modal'
 import { testimonialsSlider } from './testimonials/testimonials'
-import { hubspotService } from './services/hubspot'
+import { hubspotService } from './hubspot/hubspot'
 
 document.addEventListener('DOMContentLoaded', function () {
   // Инициализация менеджеров

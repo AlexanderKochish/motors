@@ -128,7 +128,7 @@ const AppointmentCard = ({ appointment }: Props) => {
           disabled={isRemovePending}
           onClick={() => {
             if (window.confirm("Are you sure you want to delete this appointment?")) {
-              remove({ id });
+              remove(id);
             }
           }}
           className={`${styles.actionButton} ${styles.deleteButton}`}

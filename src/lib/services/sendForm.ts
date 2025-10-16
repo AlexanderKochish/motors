@@ -5,7 +5,7 @@ export async function submitAppointment(data: AppointmentFormInputs) {
   const supabase = createClient();
   const { error } = await supabase.from("appointments").insert([
     {
-      first_name: data.firstname,
+      first_name: data.first_name,
       phone: data.phone,
       service_type: data.service_type,
       message: data.message,
@@ -26,9 +26,9 @@ export async function submitReview(data: ReviewFormInputs) {
   const { error } = await supabase.from("reviews").insert([
     {
       name: data.name,
-      car_model: data.car,
+      car_model: data.car_model,
       rating: data.rating,
-      review_text: data.review,
+      review_text: data.review_text,
       status: "pending",
     },
   ]);

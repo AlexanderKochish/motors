@@ -2,7 +2,6 @@ import React, { ReactNode } from "react";
 import styles from "./services-list.module.css";
 import { ServiceCardType } from "@/types";
 import ServiceCard from "@/components/ui/service-card/service-card";
-import { useModalContext } from "@/hooks/useModalContext";
 
 interface Props {
   services: ServiceCardType[] | undefined;

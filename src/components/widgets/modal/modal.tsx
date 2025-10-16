@@ -91,6 +91,7 @@ export default function Modal() {
                 <div className={styles.modalFormContainer}>
                   <h3 className={styles.modalTitle}>Book {serviceName || "an Appointment"}</h3>
                   <AppointmentForm
+                    serviceName={serviceName}
                     formSource="modal"
                     onSuccess={(msg) => {
                       setMessage(msg ?? "Appointment successfully booked!");

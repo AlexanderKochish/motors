@@ -84,3 +84,8 @@ export interface CompanyContact {
   created_at: string;
   updated_at: string;
 }
+
+export interface NavLink {
+  href: string;
+  label: string;
+}

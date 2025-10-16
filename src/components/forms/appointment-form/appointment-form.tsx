@@ -1,18 +1,22 @@
 import React, { useActionState, useEffect, useRef } from "react";
 import styles from "./appointment-form.module.css";
 import { submitAppointment } from "@/app/actions/appointments";
+import { useModalContext } from "@/hooks/useModalContext";
+import { useServices } from "@/hooks/useServices";
 
 interface Props {
   formSource?: "main" | "modal";
   onSuccess?: (msg: string) => void;
+  serviceName?: string;
 }
 
-const AppointmentForm = ({ formSource = "main", onSuccess }: Props) => {
+const AppointmentForm = ({ formSource = "main", onSuccess, serviceName }: Props) => {
   const [state, formAction, pending] = useActionState(submitAppointment, {
     errors: {},
     success: false,
     successMessage: "",
   });
+  const { data: services, isLoading } = useServices();
 
   const hasCalledSuccess = useRef(false);
 
@@ -28,6 +32,10 @@ const AppointmentForm = ({ formSource = "main", onSuccess }: Props) => {
       hasCalledSuccess.current = false;
     }
   }, [pending]);
+
+  const serviceTitles = services?.map((service) => service.title) || [];
+
+  const hasServiceNameInDatabase = serviceName && serviceTitles.includes(serviceName);
 
   return (
     <form action={formAction} className={styles.appointmentForm}>
@@ -62,14 +70,26 @@ const AppointmentForm = ({ formSource = "main", onSuccess }: Props) => {
       </div>
 
       <div className={styles.formGroup}>
-        <select name="service_type" className={state.errors?.service_type ? styles.error : ""}>
+        <select
+          defaultValue={hasServiceNameInDatabase ? serviceName : ""}
+          name="service_type"
+          className={state.errors?.service_type ? styles.error : ""}
+        >
           <option value="">Select Service</option>
-          <option value="diagnostic">Diagnostics</option>
-          <option value="service">Maintenance</option>
-          <option value="engine">Engine Repair</option>
-          <option value="suspension">Suspension</option>
-          <option value="electric">Car Electrics</option>
-          <option value="body">Body Repair</option>
+
+          {isLoading ? (
+            <option value="" disabled>
+              Loading services...
+            </option>
+          ) : (
+            <>
+              {services?.map((service) => (
+                <option key={service.id} value={service.title}>
+                  {service.title.charAt(0).toUpperCase() + service.title.slice(1)}
+                </option>
+              ))}
+            </>
+          )}
         </select>
         {state.errors?.service_type?._errors && (
           <span className={styles.errorMessage}>{state.errors.service_type._errors[0]}</span>
@@ -87,14 +107,6 @@ const AppointmentForm = ({ formSource = "main", onSuccess }: Props) => {
           <span className={styles.errorMessage}>{state.errors.message._errors[0]}</span>
         )}
       </div>
-
-      {/* {state.errors?._form?._errors && (
-        <div className={styles.formGroup}>
-          <span className={styles.errorMessage}>
-            {state.errors._form._errors[0]}
-          </span>
-        </div>
-      )} */}
 
       <button disabled={pending} type="submit" className={styles.submitBtn}>
         {pending ? "Submitting..." : "Book Appointment"}

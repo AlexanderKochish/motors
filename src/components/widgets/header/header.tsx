@@ -4,11 +4,7 @@ import React from "react";
 import styles from "./header.module.css";
 import { useHeaderNavigation } from "@/hooks/useHeaderNavigation";
 import { useCompanyContact } from "@/hooks/useCompanyContact";
-
-interface NavLink {
-  href: string;
-  label: string;
-}
+import { NavLink } from "@/types";
 
 export default function Header() {
   const { isScrolled, isMenuOpen, activeSection, toggleMenu, handleLinkClick } =

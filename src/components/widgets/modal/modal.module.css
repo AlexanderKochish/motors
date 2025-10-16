@@ -1,0 +1,333 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 1rem;
+}
+
+.modalOverlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modalContainer {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  transform: scale(0.7);
+  transition: transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalOverlay.active .modalContainer {
+  transform: scale(1);
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.modalClose:hover {
+  color: #ff4444;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modalTitle {
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  background: linear-gradient(45deg, #ffd700, #ff4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+.modalForm {
+  width: 100%;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #ffd700;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: #888;
+}
+
+.formGroup select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffd700' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 16px;
+  padding-right: 45px;
+  cursor: pointer;
+}
+
+.formGroup select option {
+  background: #2a2a2a;
+  color: white;
+  padding: 10px;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+.submitBtn {
+  width: 100%;
+  background: linear-gradient(45deg, #ff4444, #ff6666);
+  color: white;
+  border: none;
+  padding: 18px;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 68, 68, 0.4);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Error States */
+.formGroup input.error,
+.formGroup select.error,
+.formGroup textarea.error {
+  border-color: #ff4444;
+  background: rgba(255, 68, 68, 0.1);
+}
+
+.errorMessage {
+  color: #ff4444;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Success Message */
+.successMessage {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.successIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: bounce 0.6s ease;
+}
+
+.reviewSuccess .successIcon {
+  color: #ffd700;
+}
+
+.successMessage p {
+  color: #ccc;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  font-size: 1.1rem;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modalContainer {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+
+  .modalTitle {
+    font-size: 1.5rem;
+  }
+
+  .formGroup input,
+  .formGroup select,
+  .formGroup textarea {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+
+  .submitBtn {
+    padding: 16px;
+    font-size: 1.1rem;
+  }
+
+  .ratingSelector {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .stars label {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalContainer {
+    padding: 1.5rem 1rem;
+  }
+
+  .modalTitle {
+    font-size: 1.3rem;
+  }
+
+  .formGroup {
+    margin-bottom: 1rem;
+  }
+
+  .formGroup input,
+  .formGroup select,
+  .formGroup textarea {
+    padding: 10px 14px;
+  }
+
+  .modalClose {
+    top: 0.5rem;
+    right: 1rem;
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+  }
+}
+
+/* Scrollbar Styling */
+.modalContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modalContainer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.modalContainer::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.modalContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Beautiful validation states - восстановление прежних эффектов */
+.formGroup input:valid:not(:focus):not(:placeholder-shown),
+.formGroup select:valid:not(:focus),
+.formGroup textarea:valid:not(:focus):not(:placeholder-shown) {
+  border-color: #00ff88 !important;
+  background: rgba(0, 255, 136, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1) !important;
+}
+
+/* Сохраняем красивый фокус */
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #ffd700 !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1) !important;
+}
+
+/* Убираем конфликт с error состояниями */
+.formGroup input.error:valid:not(:focus):not(:placeholder-shown),
+.formGroup select.error:valid:not(:focus),
+.formGroup textarea.error:valid:not(:focus):not(:placeholder-shown) {
+  border-color: #00ff88 !important;
+  background: rgba(0, 255, 136, 0.1) !important;
+}
+
+/* Плавные переходы */
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  transition: all 0.3s ease !important;
+}

@@ -1,0 +1,43 @@
+.card {
+  background: var(--bg-card);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  width: 100%;
+}
+
+.cardHeader {
+  padding: 1.5rem 1.5rem 0;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+  line-height: 1.2;
+}
+
+.cardDescription {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.cardContent {
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.analyticsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.chartContainer {
+  height: 20rem;
+  width: 100%;
+}

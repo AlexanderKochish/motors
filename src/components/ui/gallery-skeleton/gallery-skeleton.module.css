@@ -1,0 +1,238 @@
+/* Gallery Skeleton Styles */
+.sectionHeaderSkeleton {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.titleSkeleton {
+  height: 2.5rem;
+  width: 200px;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 8px;
+  margin: 0 auto 1rem;
+}
+
+.subtitleSkeleton {
+  height: 1.25rem;
+  width: 300px;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 6px;
+  margin: 0 auto;
+}
+
+.filtersSkeleton {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease 0.3s forwards;
+}
+
+.filterSkeleton {
+  height: 44px;
+  width: 100px;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 25px;
+}
+
+.galleryGridSkeleton {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.galleryItemSkeleton {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: rgba(255, 255, 255, 0.05);
+  animation: pulse 2s infinite;
+}
+
+.imageSkeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.overlaySkeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  opacity: 0.7;
+}
+
+.infoSkeleton {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.titleLineSkeleton {
+  height: 1.25rem;
+  width: 80%;
+  background: linear-gradient(90deg, #fff 25%, #ccc 50%, #fff 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.textLineSkeleton {
+  height: 1rem;
+  width: 60%;
+  background: linear-gradient(90deg, #ccc 25%, #999 50%, #ccc 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.categorySkeleton {
+  height: 1.5rem;
+  width: 80px;
+  background: linear-gradient(90deg, #ff4444 25%, #ff6666 50%, #ff4444 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 15px;
+  margin-top: 0.5rem;
+}
+
+.ctaSkeleton {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  margin-top: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: pulse 2s infinite;
+}
+
+.ctaContentSkeleton {
+  margin-bottom: 2rem;
+}
+
+.ctaTitleSkeleton {
+  height: 2rem;
+  width: 250px;
+  background: linear-gradient(90deg, #fff 25%, #ccc 50%, #fff 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 6px;
+  margin: 0 auto 1rem;
+}
+
+.ctaTextSkeleton {
+  height: 1.25rem;
+  width: 300px;
+  background: linear-gradient(90deg, #ccc 25%, #999 50%, #ccc 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.ctaButtonSkeleton {
+  height: 50px;
+  width: 180px;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 25px;
+  margin: 0 auto;
+}
+
+/* Skeleton Animation */
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Responsive Skeleton */
+@media (max-width: 768px) {
+  .galleryGridSkeleton {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .filtersSkeleton {
+    gap: 0.5rem;
+  }
+
+  .filterSkeleton {
+    width: 80px;
+    height: 38px;
+  }
+
+  .ctaSkeleton {
+    padding: 2rem;
+  }
+
+  .titleSkeleton {
+    width: 180px;
+  }
+
+  .subtitleSkeleton {
+    width: 250px;
+  }
+
+  .ctaTitleSkeleton {
+    width: 200px;
+  }
+
+  .ctaTextSkeleton {
+    width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .galleryGridSkeleton {
+    grid-template-columns: 1fr;
+  }
+
+  .overlaySkeleton {
+    padding: 1.5rem;
+  }
+}
+
+.gallerySkeleton {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallerySkeleton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 90% 90%, rgba(255, 68, 68, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}

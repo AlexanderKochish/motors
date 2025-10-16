@@ -1,0 +1,238 @@
+.testimonials {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+.sectionHeaderSkeleton {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.titleSkeleton {
+  height: 2.5rem;
+  width: 300px;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 8px;
+  margin: 0 auto 1rem;
+}
+
+.subtitleSkeleton {
+  height: 1.25rem;
+  width: 400px;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 6px;
+  margin: 0 auto;
+}
+
+.sliderSkeleton {
+  position: relative;
+  margin: 3rem 0;
+}
+
+.sliderContainerSkeleton {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cardSkeleton {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: pulse 2s infinite;
+}
+
+.cardHeaderSkeleton {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.avatarSkeleton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.userInfoSkeleton {
+  flex: 1;
+}
+
+.userNameSkeleton {
+  height: 1.25rem;
+  width: 120px;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.userRatingSkeleton {
+  height: 1rem;
+  width: 80px;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.cardContentSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.textLineSkeleton {
+  height: 1rem;
+  width: 100%;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.textLineShortSkeleton {
+  height: 1rem;
+  width: 60%;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Slider Controls Skeleton */
+.sliderControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.sliderBtnSkeleton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.sliderDotsSkeleton {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.sliderDotSkeleton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+/* CTA Skeleton */
+.ctaSkeleton {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  margin-top: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: pulse 2s infinite;
+}
+
+.ctaContentSkeleton {
+  margin-bottom: 2rem;
+}
+
+.ctaTitleSkeleton {
+  height: 2rem;
+  width: 250px;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 6px;
+  margin: 0 auto 1rem;
+}
+
+.ctaTextSkeleton {
+  height: 1.25rem;
+  width: 300px;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.ctaButtonSkeleton {
+  height: 50px;
+  width: 180px;
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 25px;
+  margin: 0 auto;
+}
+
+/* Skeleton Animation */
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Responsive Skeleton */
+@media (max-width: 1024px) {
+  .sliderContainerSkeleton {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sliderContainerSkeleton {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .titleSkeleton {
+    width: 250px;
+    height: 2rem;
+  }
+
+  .subtitleSkeleton {
+    width: 300px;
+  }
+
+  .ctaSkeleton {
+    padding: 2rem;
+  }
+
+  .ctaTitleSkeleton {
+    width: 200px;
+  }
+
+  .ctaTextSkeleton {
+    width: 250px;
+  }
+}

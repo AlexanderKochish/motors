@@ -1,0 +1,41 @@
+.adminActions {
+  display: flex;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  gap: 4px;
+}
+
+.deleteBtn {
+  width: 32px;
+  height: 32px;
+  background: var(--accent-error);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.deleteBtn:hover {
+  background: var(--accent-error);
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.deleteBtn::before {
+  content: "×";
+  line-height: 1;
+}
+
+.deleteBtn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}

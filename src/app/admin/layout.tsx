@@ -32,7 +32,6 @@ export default async function AdminLayout({
   ]);
 
   return (
-
     <QueryProviders>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <AdminLayoutClient>{children}</AdminLayoutClient>

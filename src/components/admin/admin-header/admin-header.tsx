@@ -17,21 +17,21 @@ export default function AdminHeader({ onMenuToggle, isSidebarOpen }: AdminHeader
   const { theme, toggleTheme, mounted } = useTheme();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const {data: admin} = useQuery({
-    queryKey: ['profile'],
-    queryFn: async() => {
-      const supabase =  createClient()
+  const { data: admin } = useQuery({
+    queryKey: ["profile"],
+    queryFn: async () => {
+      const supabase = createClient();
 
       const { data, error } = await supabase
-      .from('profiles')
-      .select('email')
-      .eq('role', 'admin')
-      .single()
+        .from("profiles")
+        .select("email")
+        .eq("role", "admin")
+        .single();
 
-      if(error) throw error
-      return data
-    }
-  }) 
+      if (error) throw error;
+      return data;
+    },
+  });
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {

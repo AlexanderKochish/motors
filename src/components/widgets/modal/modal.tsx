@@ -16,7 +16,6 @@ import { useModalContext } from "@/hooks/useModalContext";
 
 export default function Modal() {
   const { isModalOpen, modalType, serviceName, successMessage, closeModal } = useModalContext();
-
   const [message, setMessage] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -35,35 +34,32 @@ export default function Modal() {
       setMessage(null);
       appointmentForm.reset();
       reviewForm.reset();
+      return;
     }
-  }, [isModalOpen, appointmentForm, reviewForm]);
 
-  useEffect(() => {
-    if (serviceName && modalType === "appointment") {
+    if (modalType === "appointment" && serviceName) {
       appointmentForm.setValue("service_type", serviceName);
     }
-  }, [serviceName, modalType, appointmentForm]);
 
-  useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isModalOpen) closeModal();
+      if (e.key === "Escape") closeModal();
     };
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isModalOpen, closeModal]);
-
-  useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
         closeModal();
       }
     };
-    if (isModalOpen) document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isModalOpen, closeModal]);
+
+    document.addEventListener("keydown", handleEscape);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isModalOpen, modalType, serviceName, closeModal, appointmentForm, reviewForm]);
 
   const finalMessage = message || successMessage || "Action completed successfully!";
-
   const isSuccessVisible = modalType === "success" || message;
 
   if (!isModalOpen) return null;

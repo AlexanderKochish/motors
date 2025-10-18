@@ -4,28 +4,39 @@ import { useCallback } from "react";
 
 export function useCounterAnimation() {
   const animateCounters = useCallback(() => {
-    const counters = document.querySelectorAll("[data-target]");
+    requestAnimationFrame(() => {
+      const counters = document.querySelectorAll("[data-target]");
 
-    counters.forEach((counter) => {
-      const el = counter as HTMLElement;
-      const target = Number(el.dataset.target);
-      if (!target) return;
+      counters.forEach((counter, index) => {
+        const el = counter as HTMLElement;
+        const target = Number(el.getAttribute("data-target"));
+        const suffix = el.getAttribute("data-suffix") || "";
 
-      const duration = 2000;
-      const frameRate = 16;
-      const step = target / (duration / frameRate);
-      let current = 0;
+        if (!target || isNaN(target)) return;
 
-      const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
+        setTimeout(() => {
+          el.textContent = `0${suffix}`;
 
-        el.textContent =
-          Math.floor(current).toString() + (el.dataset.suffix ? el.dataset.suffix : "");
-      }, frameRate);
+          const duration = 2000;
+          const frameRate = 1000 / 60;
+          const steps = duration / frameRate;
+          const increment = target / steps;
+          let current = 0;
+          let step = 0;
+
+          const timer = setInterval(() => {
+            current += increment;
+            step++;
+
+            if (step >= steps) {
+              current = target;
+              clearInterval(timer);
+            }
+
+            el.textContent = Math.floor(current).toString() + suffix;
+          }, frameRate);
+        }, index * 100);
+      });
     });
   }, []);
 

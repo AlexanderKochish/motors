@@ -1,0 +1,165 @@
+.skeletonServices {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeletonServices::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon points="0,0 1000,0 1000,1000" fill="rgba(255,68,68,0.03)"/></svg>');
+  background-size: cover;
+}
+
+.skeletonContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.skeletonHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.skeletonTitle {
+  width: 300px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin: 0 auto 1rem;
+  animation: pulse 2s infinite;
+}
+
+.skeletonSubtitle {
+  width: 400px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  margin: 0 auto;
+  animation: pulse 2s infinite;
+}
+
+/* Используем ту же сетку что и в основном компоненте */
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.skeletonCard {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: pulse 2s infinite;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeletonImage {
+  height: 200px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  margin: -2.5rem -2.5rem 1.5rem -2.5rem;
+}
+
+.skeletonTextLarge {
+  height: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.skeletonTextMedium {
+  height: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.skeletonTextSmall {
+  height: 20px;
+  width: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+.skeletonButton {
+  height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 25px;
+  margin-top: auto;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .skeletonServices {
+    padding: 60px 20px;
+  }
+
+  .skeletonGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .skeletonCard {
+    padding: 2rem;
+  }
+
+  .skeletonTitle {
+    width: 250px;
+    height: 32px;
+  }
+
+  .skeletonSubtitle {
+    width: 300px;
+    height: 18px;
+  }
+
+  .skeletonImage {
+    margin: -2rem -2rem 1.5rem -2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skeletonCard {
+    padding: 1.5rem;
+  }
+
+  .skeletonTitle {
+    width: 200px;
+  }
+
+  .skeletonSubtitle {
+    width: 250px;
+  }
+
+  .skeletonImage {
+    margin: -1.5rem -1.5rem 1rem -1.5rem;
+  }
+}

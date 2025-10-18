@@ -185,6 +185,15 @@
   }
 }
 
+@media (max-width: 1145px) {
+  .logoText {
+    font-size: 1rem;
+  }
+  .phoneNumber {
+    display: none;
+  }
+}
+
 @media (max-width: 968px) {
   .navMenu {
     gap: 1rem;
@@ -200,7 +209,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 880px) {
   .header {
     padding: 0.5rem 0;
   }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./advantages.module.css";
 import { useCounterAnimation } from "@/hooks/useCounterAnimation";
 import SectionHeader from "@/components/ui/section-header/section-header";
@@ -9,20 +9,31 @@ import { useModalContext } from "@/hooks/useModalContext";
 const Advantages = () => {
   const { handleBookAppointment } = useModalContext();
   const statsRef = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const { animateCounters } = useCounterAnimation();
 
   useEffect(() => {
-    const statsObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+    if (hasAnimated) return;
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
             animateCounters();
-            statsObserver.unobserve(entry.target);
+            setHasAnimated(true);
+          }, 300);
+
+          if (statsRef.current) {
+            statsObserver.unobserve(statsRef.current);
           }
-        });
-      },
-      { threshold: 0.5 },
-    );
+        }
+      });
+    };
+
+    const statsObserver = new IntersectionObserver(handleIntersection, {
+      threshold: 0.1,
+      rootMargin: "50px 0px 50px 0px",
+    });
 
     if (statsRef.current) {
       statsObserver.observe(statsRef.current);
@@ -33,7 +44,19 @@ const Advantages = () => {
         statsObserver.unobserve(statsRef.current);
       }
     };
-  }, [animateCounters]);
+  }, [animateCounters, hasAnimated]);
+
+  useEffect(() => {
+    const handleTouchStart = () => {
+      if (!hasAnimated) {
+        animateCounters();
+        setHasAnimated(true);
+      }
+    };
+
+    document.addEventListener("touchstart", handleTouchStart);
+    return () => document.removeEventListener("touchstart", handleTouchStart);
+  }, [hasAnimated, animateCounters]);
 
   const advantages = [
     {
@@ -63,9 +86,9 @@ const Advantages = () => {
   ];
 
   const stats = [
-    { value: 10, label: "years experience", suffix: "+" },
-    { value: 2400, label: "satisfied customers", suffix: "+" },
-    { value: 24, label: "months warranty", suffix: "" },
+    { value: 7, label: "years experience", suffix: "+" },
+    { value: 2100, label: "satisfied customers", suffix: "+" },
+    { value: 12, label: "months warranty", suffix: "" },
     { value: 100, label: "quality", suffix: "%" },
   ];
 
@@ -85,7 +108,11 @@ const Advantages = () => {
           <div className={styles.advantagesStats}>
             {stats.map((stat, index) => (
               <div key={index} className={styles.statItem}>
-                <div className={styles.statNumber} data-target={stat.value}>
+                <div
+                  className={styles.statNumber}
+                  data-target={stat.value}
+                  data-suffix={stat.suffix}
+                >
                   0{stat.suffix}
                 </div>
                 <div className={styles.statLabel}>{stat.label}</div>

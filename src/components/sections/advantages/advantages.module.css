@@ -77,8 +77,8 @@
   color: #ffd700;
   margin-bottom: 0.5rem;
   font-family: "Arial", sans-serif;
+  transition: all 0.5s ease;
 }
-
 .statLabel {
   color: #ccc;
   font-size: 1.1rem;

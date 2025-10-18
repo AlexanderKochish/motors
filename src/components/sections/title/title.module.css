@@ -1,6 +1,3 @@
-/* title.module.css */
-
-/* Основные стили секции */
 .title {
   min-height: 100vh;
   color: white;
@@ -12,7 +9,6 @@
   padding-top: 100px;
 }
 
-/* Многослойный фон */
 .titleBackground {
   position: absolute;
   top: 0;
@@ -22,7 +18,6 @@
   z-index: -2;
 }
 
-/* Фото Monksland/Athlone */
 .locationBackground {
   position: absolute;
   top: 0;
@@ -35,7 +30,6 @@
   animation: backgroundPan 20s ease-in-out infinite;
 }
 
-/* Градиентный оверлей */
 .gradientOverlay {
   position: absolute;
   top: 0;
@@ -51,7 +45,6 @@
   backdrop-filter: blur(2px);
 }
 
-/* Анимированные фигуры */
 .floatingShapes {
   position: absolute;
   top: 0;
@@ -127,7 +120,6 @@
   left: 60%;
 }
 
-/* Контент */
 .titleContent {
   max-width: 1200px;
   margin: 0 auto;
@@ -137,7 +129,6 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* Бейдж локации */
 .locationBadge {
   display: inline-flex;
   align-items: center;
@@ -163,7 +154,6 @@
   font-size: 0.9rem;
 }
 
-/* Заголовки и текст */
 .title h1 {
   font-size: 3.5rem;
   margin-bottom: 1rem;
@@ -192,7 +182,6 @@
   animation: fadeInUp 1s ease 1.2s forwards;
 }
 
-/* Кнопка CTA */
 .ctaButton {
   display: inline-block;
   background: linear-gradient(45deg, #ff4444, #ff6666);
@@ -233,7 +222,6 @@
   box-shadow: 0 10px 30px rgba(255, 68, 68, 0.6);
 }
 
-/* Контактная информация */
 .contactInfo {
   margin-top: 3rem;
   display: flex;
@@ -267,7 +255,6 @@
   animation: bounce 3s infinite ease-in-out;
 }
 
-/* Машина */
 .titleCar {
   position: absolute;
   right: 5%;
@@ -286,7 +273,76 @@
   transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
 }
 
-/* Анимации */
+@media (max-width: 968px) {
+  .titleCar {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 80%;
+    margin: 2rem auto 0;
+  }
+
+  .title {
+    flex-direction: column;
+    text-align: center;
+    padding: 100px 20px 50px;
+  }
+
+  .title h1 {
+    font-size: 2.5rem;
+  }
+
+  .titleSubtitle {
+    font-size: 1.2rem;
+  }
+
+  .titleDescription {
+    text-align: center;
+  margin: 0 auto;
+   margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .titleCar {
+    width: 100%;
+  }
+
+  .titleCar img {
+    transform: none;
+  }
+
+  .locationBackground {
+    animation: none;
+  }
+
+  .contactInfo {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title h1 {
+    font-size: 2rem;
+  }
+
+  .titleSubtitle {
+    font-size: 1rem;
+  }
+
+  .locationBadge {
+    font-size: 0.8rem;
+  }
+
+  .ctaButton {
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    width: 100%;
+    text-align: center;
+  }
+}
+
 @keyframes backgroundPan {
   0%,
   100% {
@@ -382,70 +438,5 @@
   }
   60% {
     transform: translateY(-4px);
-  }
-}
-
-/* Адаптивность */
-@media (max-width: 968px) {
-  .titleCar {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    width: 80%;
-    margin: 2rem auto 0;
-  }
-
-  .title {
-    flex-direction: column;
-    text-align: center;
-    padding: 100px 20px 50px;
-  }
-
-  .title h1 {
-    font-size: 2.5rem;
-  }
-
-  .titleSubtitle {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .titleCar {
-    width: 100%;
-  }
-
-  .titleCar img {
-    transform: none;
-  }
-
-  .locationBackground {
-    animation: none;
-  }
-
-  .contactInfo {
-    flex-direction: column;
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .title h1 {
-    font-size: 2rem;
-  }
-
-  .titleSubtitle {
-    font-size: 1rem;
-  }
-
-  .locationBadge {
-    font-size: 0.8rem;
-  }
-
-  .ctaButton {
-    padding: 14px 30px;
-    font-size: 1.1rem;
-    width: 100%;
-    text-align: center;
   }
 }

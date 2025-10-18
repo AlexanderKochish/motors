@@ -28,28 +28,11 @@ export default function AdminLogin() {
               id="email"
               name="email"
               required
-              placeholder="admin@monkslandmotors.com"
+              placeholder="admin@example.rom"
               className={styles.formInput}
             />
             {state.errors?.email?._errors && (
               <p className={styles.errorText}>{state.errors.email._errors[0]}</p>
-            )}
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="password" className={styles.formLabel}>
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              placeholder="Enter your password"
-              className={styles.formInput}
-            />
-            {state.errors?.password?._errors && (
-              <p className={styles.errorText}>{state.errors.password._errors[0]}</p>
             )}
           </div>
 
@@ -67,16 +50,6 @@ export default function AdminLogin() {
             Sign In
           </button>
         </form>
-
-        <div className={styles.demoCredentials}>
-          <h3 className={styles.demoTitle}>Demo Credentials:</h3>
-          <p className={styles.demoText}>
-            Email: <strong>admin@monkslandmotors.com</strong>
-          </p>
-          <p className={styles.demoText}>
-            Password: <strong>admin123</strong>
-          </p>
-        </div>
       </div>
     </div>
   );

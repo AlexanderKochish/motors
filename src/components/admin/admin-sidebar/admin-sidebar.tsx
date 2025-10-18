@@ -55,7 +55,7 @@ export default function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
             })}
           </div>
 
-          <div className={styles.statsSection}>
+          {/* <div className={styles.statsSection}>
             <div className={styles.statsTitle}>Quick Stats</div>
             <div className={styles.statsCard}>
               <div className={styles.statRow}>
@@ -71,7 +71,7 @@ export default function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
                 <span className={`${styles.statValue} ${styles.statRevenue}`}>€2,847</span>
               </div>
             </div>
-          </div>
+          </div> */}
         </nav>
       </aside>
     </>

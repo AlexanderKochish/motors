@@ -4,7 +4,6 @@ import { useState } from "react";
 import AdminHeader from "@/components/admin/admin-header/admin-header";
 import AdminSidebar from "@/components/admin/admin-sidebar/admin-sidebar";
 import styles from "./layout.module.css";
-import { AuthError } from "@supabase/supabase-js";
 
 interface AdminLayoutClientProps {
   children: React.ReactNode;

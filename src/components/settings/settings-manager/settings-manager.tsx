@@ -2,27 +2,9 @@
 
 import { useState, useEffect } from "react";
 import styles from "./settings-manager.module.css";
-import { useCompanyContact } from "@/hooks/useCompanyContact";
 import SettingContacts from "../setting-contacts/setting-contacts";
 import TabHeader from "../tab-header/tab-header";
-import SettingSecurity from "../setting-security/setting-security";
-
-interface SettingsData {
-  companyName: string;
-  email: string;
-  phone: string;
-  address: string;
-  workingHours: string;
-
-  emailNotifications: boolean;
-  smsNotifications: boolean;
-  appointmentReminders: boolean;
-  marketingEmails: boolean;
-
-  currentPassword: string;
-  newPassword: string;
-  confirmPassword: string;
-}
+// import SettingSecurity from "../setting-security/setting-security";
 
 export default function SettingsManager() {
   const [activeTab, setActiveTab] = useState<"contacts" | "security">("contacts");
@@ -44,13 +26,13 @@ export default function SettingsManager() {
             Contact Information
           </button>
 
-          <button
+          {/* <button
             className={`${styles.tabButton} ${activeTab === "security" ? styles.active : ""}`}
             onClick={() => setActiveTab("security")}
           >
             <span className={styles.tabIcon}>🔒</span>
             Security
-          </button>
+          </button> */}
         </div>
 
         <div className={styles.content}>
@@ -64,7 +46,7 @@ export default function SettingsManager() {
             </div>
           )}
 
-          {activeTab === "security" && (
+          {/* {activeTab === "security" && (
             <div className={styles.tabContent}>
               <TabHeader
                 title="Security Settings"
@@ -72,7 +54,7 @@ export default function SettingsManager() {
               />
               <SettingSecurity />
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

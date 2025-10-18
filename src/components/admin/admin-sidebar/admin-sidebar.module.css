@@ -16,7 +16,6 @@
   transform: translateX(0);
 }
 
-/* Для десктопной версии */
 @media (min-width: 1024px) {
   .sidebar {
     display: block;
@@ -25,7 +24,6 @@
   }
 }
 
-/* Мобильная версия */
 @media (max-width: 1023px) {
   .sidebar {
     display: block;
@@ -126,7 +124,6 @@
   color: var(--accent-success);
 }
 
-/* Оверлей для мобильного меню */
 .mobileOverlay {
   position: fixed;
   top: 0;
@@ -142,8 +139,12 @@
   display: block;
 }
 
-@media (min-width: 1024px) {
+@media (width < 1024px) {
   .mobileOverlay {
     display: none !important;
+  }
+
+  .menu {
+    margin-top: 4rem;
   }
 }

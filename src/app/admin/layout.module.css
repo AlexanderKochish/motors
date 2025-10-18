@@ -97,7 +97,6 @@
   gap: 1rem;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .main {
     padding: 1rem;
@@ -155,9 +154,6 @@
   }
 }
 
-/* Добавляем эти стили в конец файла layout.module.css */
-
-/* Мобильное меню и адаптивность */
 .mobileOverlay {
   position: fixed;
   top: 0;
@@ -179,7 +175,6 @@
   }
 }
 
-/* Стили для сайдбара с мобильным меню */
 .sidebar {
   width: 16rem;
   background-color: var(--bg-sidebar);
@@ -198,7 +193,6 @@
   transform: translateX(0);
 }
 
-/* Для десктопной версии */
 @media (min-width: 1024px) {
   .sidebar {
     display: block;
@@ -207,7 +201,6 @@
   }
 }
 
-/* Мобильная версия */
 @media (max-width: 1023px) {
   .sidebar {
     display: block;

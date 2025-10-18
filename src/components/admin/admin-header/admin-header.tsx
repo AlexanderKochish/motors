@@ -5,6 +5,8 @@ import styles from "./admin-header.module.css";
 import SystemStatus from "@/components/ui/system-status/system-status";
 import { useEffect, useRef, useState } from "react";
 import { logout } from "@/app/actions/login";
+import { useQuery } from "@tanstack/react-query";
+import { createClient } from "@/lib/supabase/client";
 
 interface AdminHeaderProps {
   onMenuToggle: () => void;
@@ -15,6 +17,21 @@ export default function AdminHeader({ onMenuToggle, isSidebarOpen }: AdminHeader
   const { theme, toggleTheme, mounted } = useTheme();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const {data: admin} = useQuery({
+    queryKey: ['profile'],
+    queryFn: async() => {
+      const supabase =  createClient()
+
+      const { data, error } = await supabase
+      .from('profiles')
+      .select('email')
+      .eq('role', 'admin')
+      .single()
+
+      if(error) throw error
+      return data
+    }
+  }) 
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -74,7 +91,7 @@ export default function AdminHeader({ onMenuToggle, isSidebarOpen }: AdminHeader
               {theme === "light" ? "🌙" : "☀️"}
             </button>
 
-            <button className={styles.supportButton}>Support</button>
+            {/* <button className={styles.supportButton}>Support</button> */}
             <div className={styles.avatarContainer} ref={dropdownRef}>
               <button
                 className={styles.avatar}
@@ -89,16 +106,16 @@ export default function AdminHeader({ onMenuToggle, isSidebarOpen }: AdminHeader
                 <div className={styles.dropdown}>
                   <div className={styles.userInfo}>
                     <p className={styles.userName}>Admin User</p>
-                    <p className={styles.userEmail}>admin@monkslandmotors.com</p>
+                    <p className={styles.userEmail}>{admin?.email}</p>
                   </div>
                   <div className={styles.dropdownDivider}></div>
-                  <button className={`${styles.dropdownItem} ${styles.profileItem}`}>
+                  {/* <button className={`${styles.dropdownItem} ${styles.profileItem}`}>
                     Profile
                   </button>
                   <button className={`${styles.dropdownItem} ${styles.settingsItem}`}>
                     Settings
                   </button>
-                  <div className={styles.dropdownDivider}></div>
+                  <div className={styles.dropdownDivider}></div> */}
                   <button
                     className={`${styles.dropdownItem} ${styles.logoutItem}`}
                     onClick={handleLogout}

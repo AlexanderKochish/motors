@@ -59,38 +59,18 @@ const Contacts = () => {
                 </p>
               </div>
             </div>
-
-            {/* <div className={styles.socialLinks}>
-              <h3>Follow Us</h3>
-              <div className={styles.socialIcons}>
-                <a href="#" className={styles.socialIcon}>
-                  📘
-                </a>
-                <a href="#" className={styles.socialIcon}>
-                  📷
-                </a>
-                <a href="#" className={styles.socialIcon}>
-                  💬
-                </a>
-                <a href="#" className={styles.socialIcon}>
-                  🎥
-                </a>
-              </div>
-            </div> */}
           </div>
 
           <div className={styles.contactMap}>
-            <div className={styles.mapPlaceholder}>
-              <div className={styles.mapContent}>
-                <div className={styles.mapPin}>📍</div>
-                <h3>Location Map</h3>
-                <p>
-                  Our service is located in the city center
-                  <br />
-                  with convenient access and parking
-                </p>
-                <button className={styles.mapBtn}>Open in Google Maps</button>
-              </div>
+            <div className={styles.mapContainer}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m8!1m3!1d2151.748478054804!2d-7.979494328558349!3d53.41912772751389!3m2!1i1024!2i768!4f13.1!4m6!3e0!4m0!4m3!3m2!1d53.4192707!2d-7.9796128!5e1!3m2!1sen!2sie!4v1760712968721!5m2!1sen!2sie"
+                className={styles.mapIframe}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Our Location Map"
+              />
             </div>
           </div>
         </div>

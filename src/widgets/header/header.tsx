@@ -41,7 +41,14 @@ export default function Header() {
               aria-label="Monksland Motors - Go to home"
             >
               <div className={styles.logoIcon} aria-hidden="true">
-                <Image src={logo} width={40} height={40} alt="logo" className={styles.logoImg} />
+                <Image
+                  src={logo}
+                  width={40}
+                  height={40}
+                  alt="logo"
+                  className={styles.logoImg}
+                  loading="lazy"
+                />
               </div>
               <span className={styles.logoText}>Monksland Motors</span>
             </a>

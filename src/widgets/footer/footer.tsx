@@ -11,7 +11,14 @@ const Footer = () => {
         <div className={styles.footerContent}>
           <div className={styles.footerLogo}>
             <div className={styles.logo}>
-              <Image src={logo} width={40} height={40} alt="logo" className={styles.logoImg} />
+              <Image
+                src={logo}
+                width={40}
+                height={40}
+                alt="logo"
+                className={styles.logoImg}
+                loading="lazy"
+              />
               <span>Monksland Motors</span>
             </div>
             <p className={styles.footerDescription}>Professional car repair since 2024</p>

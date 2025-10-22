@@ -150,8 +150,6 @@ export default function Testimonials() {
     );
   }
 
-  const displayTestimonials = testimonials.slice(0, 6);
-
   return (
     <section className={styles.testimonials} id="testimonials">
       <div className="container">
@@ -162,7 +160,7 @@ export default function Testimonials() {
 
         <div className={styles.testimonialsSlider}>
           <div ref={sliderRef} className="keen-slider">
-            {displayTestimonials.map((testimonial) => (
+            {testimonials.map((testimonial) => (
               <div key={testimonial.id} className="keen-slider__slide">
                 <div className={styles.slideInner}>
                   <TestimonialCard testimonial={testimonial} />
@@ -171,7 +169,7 @@ export default function Testimonials() {
             ))}
           </div>
 
-          {slidesCount > 2 && (
+          {slidesCount > 1 && (
             <SliderControls
               currentSlide={currentSlide}
               slidesCount={slidesCount}

@@ -1,4 +1,4 @@
-import AdminLogin from "@/components/admin/auth/admin-login/admin-login";
+import AdminLogin from "@/features/auth/components/admin-login/admin-login";
 import React from "react";
 
 const AdminAuthPage = () => {

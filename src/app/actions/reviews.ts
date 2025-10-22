@@ -1,7 +1,7 @@
 "use server";
 
-import { reviewFormSchema } from "@/schemas/form";
-import { ReviewService } from "@/repositories/review";
+import { reviewFormSchema } from "@/shared/schemas/form";
+import { ReviewService } from "@/features/reviews/repositories/review";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { Status } from "@/types";
@@ -91,7 +91,15 @@ export async function getRecentReviews() {
   try {
     return await service.getRecentReviews();
   } catch (error) {
-    throw new Error("Failed to get review");
+    throw new Error("Failed to get recent review");
+  }
+}
+
+export async function getApprovedReviews() {
+  try {
+    return await service.getApprovedReviews();
+  } catch (error) {
+    throw new Error("Failed to get approved review");
   }
 }
 

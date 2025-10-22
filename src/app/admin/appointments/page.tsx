@@ -1,4 +1,4 @@
-import AppointmentsManager from "@/components/appointments/appointments-manager/appointment-manager";
+import AppointmentsManager from "@/features/appointments/components/appointments-manager/appointment-manager";
 import React from "react";
 
 const AppointmentsPage = () => {

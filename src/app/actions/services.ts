@@ -1,9 +1,9 @@
 "use server";
 
-import { Services } from "@/repositories/services";
+import { Services } from "@/features/services/repositories/services";
 import { ServiceCardType } from "@/types";
 import { uploadToStorage } from "./uploadToStorage";
-import { processFormData } from "@/utils/helpers/processFormData";
+import { processFormData } from "@/shared/utils/helpers/processFormData";
 
 const service = new Services();
 

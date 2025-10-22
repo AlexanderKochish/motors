@@ -1,0 +1,14 @@
+.cardPreview {
+  margin-top: 1rem;
+  border: 2px dashed var(--border-primary);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+}
+
+.previewTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import AdminHeader from "@/components/admin/admin-header/admin-header";
-import AdminSidebar from "@/components/admin/admin-sidebar/admin-sidebar";
+import AdminHeader from "@/features/admin/components/admin-header/admin-header";
+import AdminSidebar from "@/features/admin/components/admin-sidebar/admin-sidebar";
 import styles from "./layout.module.css";
 
 interface AdminLayoutClientProps {

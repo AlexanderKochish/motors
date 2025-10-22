@@ -1,5 +1,6 @@
-import { AppointmentFormInputs, ReviewFormInputs } from "@/schemas/form";
+import { AppointmentFormInputs } from "@/features/appointments/lib/zod/appointment-form-schema";
 import { createClient } from "../supabase/client";
+import { ReviewFormInputs } from "@/shared/schemas/form";
 
 export async function submitAppointment(data: AppointmentFormInputs) {
   const supabase = createClient();

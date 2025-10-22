@@ -1,4 +1,4 @@
-import ReviewsManager from "@/components/reviews/reviews-manager/reviews-manager";
+import ReviewsManager from "@/features/reviews/components/reviews-manager/reviews-manager";
 import React from "react";
 
 const ReviewsPage = () => {

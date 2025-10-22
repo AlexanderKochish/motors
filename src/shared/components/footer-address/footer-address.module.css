@@ -1,0 +1,32 @@
+.footerColumn h4 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footerColumn ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerColumn li {
+  margin-bottom: 0.5rem;
+}
+
+.contacts li {
+  color: #ccc;
+}
+
+@media (max-width: 968px) {
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footerColumn:last-child {
+    grid-column: 1 / -1;
+  }
+}

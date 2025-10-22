@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import { ReviewService } from "@/repositories/review";
-import { AppointmentService } from "@/repositories/appointmet";
+import { ReviewService } from "@/features/reviews/repositories/review";
+import { AppointmentService } from "@/features/appointments/repositories/appointmet";
 import QueryProviders from "@/providers/QueryProvider";
 import AdminLayoutClient from "./admin-layout-client";
 

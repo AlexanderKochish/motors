@@ -1,4 +1,4 @@
-import ServicesManager from "@/components/services/services-manager/services-manager";
+import ServicesManager from "@/features/services/components/services-manager/services-manager";
 
 export default function ServiceAdminPage() {
   return <ServicesManager />;

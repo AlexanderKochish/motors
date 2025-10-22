@@ -1,7 +1,7 @@
 "use server";
 
 import { CompanyContact } from "@/types";
-import { Company } from "@/repositories/company";
+import { Company } from "@/features/company/repositories/company";
 
 const service = new Company();
 

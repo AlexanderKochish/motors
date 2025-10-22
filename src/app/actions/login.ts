@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { loginSchema } from "@/lib/validations/login.schema";
 import { z } from "zod";
@@ -12,6 +11,7 @@ type LoginFormState = {
     email?: { _errors: string[] };
     _errors?: string[];
   };
+  success: boolean;
 };
 
 export async function login(
@@ -30,7 +30,7 @@ export async function login(
       email: { _errors: treeified.properties?.email?.errors ?? [] },
       _errors: treeified.errors ?? [],
     };
-    return { errors: formatted };
+    return { errors: formatted, success: false };
   }
 
   const { email } = validatedFields.data;
@@ -43,11 +43,16 @@ export async function login(
     .single();
 
   if (!existingUser || verifyError) {
-    return { errors: { _errors: ["User not found"] } };
+    return {
+      errors: {
+        _errors: ["If this email exists and has admin privileges, you will receive a login link"],
+      },
+      success: false,
+    };
   }
 
   if (!email) {
-    return { errors: { email: { _errors: ["Email is required"] } } };
+    return { errors: { email: { _errors: ["Email is required"] } }, success: false };
   }
 
   const { error } = await supabase.auth.signInWithOtp({
@@ -58,10 +63,15 @@ export async function login(
   });
 
   if (error) {
-    return { errors: { _errors: [error.message] } };
+    return { errors: { _errors: [error.message] }, success: false };
   }
 
-  return { errors: { _errors: ["Check your email for the login link!"] } };
+  return {
+    errors: {
+      _errors: [],
+    },
+    success: true,
+  };
 }
 
 export async function logout() {

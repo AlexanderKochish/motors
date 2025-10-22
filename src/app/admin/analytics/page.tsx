@@ -11,8 +11,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "@/components/ui/loading/loading";
-import ErrorBlock from "@/components/ui/error-block/error-block";
+import Loading from "@/shared/components/loading/loading";
+import ErrorBlock from "@/shared/components/error-block/error-block";
 
 export default function AnalyticsDashboard() {
   const { data, isLoading, isError } = useQuery({
@@ -30,7 +30,9 @@ export default function AnalyticsDashboard() {
 
         <div className={styles.cardContent}>
           {isLoading && <Loading />}
-          {isError && <ErrorBlock message="Failed to load analytics data" />}
+          {isError && (
+            <ErrorBlock title="Error Analytics" message="Failed to load analytics data" />
+          )}
 
           {!isLoading && !isError && data && (
             <div className={styles.chartContainer}>

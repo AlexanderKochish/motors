@@ -1,4 +1,4 @@
-import CustomersManager from "@/components/customers/customers-manager/customers-manager";
+import CustomersManager from "@/features/customers/components/customers-manager/customers-manager";
 import React from "react";
 
 const CustomersPage = () => {

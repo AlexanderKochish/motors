@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.icon {
+  margin-bottom: 1rem;
+  color: #9ca3af;
+}
+
+.icon svg {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #536282;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: #6b7280;
+  max-width: 20rem;
+  margin-bottom: 1.5rem;
+}
+
+.action {
+  margin-top: 0.5rem;
+}

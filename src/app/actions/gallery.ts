@@ -1,8 +1,8 @@
 "use server";
-import { Gallery } from "@/repositories/gallery";
+import { Gallery } from "@/features/gallery/repositories/gallery";
 import { GalleryItem } from "@/types";
 import { uploadToStorage } from "./uploadToStorage";
-import { processFormData } from "@/utils/helpers/processFormData";
+import { processFormData } from "@/shared/utils/helpers/processFormData";
 
 const service = new Gallery();
 

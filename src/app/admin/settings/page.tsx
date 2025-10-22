@@ -1,4 +1,4 @@
-import SettingsManager from "@/components/settings/settings-manager/settings-manager";
+import SettingsManager from "@/features/settings/components/settings-manager/settings-manager";
 
 export default function Settings() {
   return <SettingsManager />;

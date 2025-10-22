@@ -1,10 +1,10 @@
 "use server";
 
-import { appointmentFormSchema } from "@/schemas/form";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
-import { AppointmentService } from "@/repositories/appointmet";
+import { AppointmentService } from "@/features/appointments/repositories/appointmet";
 import { Appointments, AppointmentStatus } from "@/types";
+import { appointmentFormSchema } from "@/features/appointments/lib/zod/appointment-form-schema";
 
 type AppointmentFormState = {
   errors: {

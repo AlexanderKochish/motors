@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import styles from "./service-card.module.css";
 import { ServiceCardType } from "@/types";
+import Image from "next/image";
 
 interface Props {
   service: ServiceCardType;
@@ -13,7 +14,7 @@ const ServiceCard = ({ service, children, onBookAppointment }: Props) => {
     <div key={service.id} className={styles.serviceCard}>
       <div className={styles.serviceImage}>
         {service.image && (
-          <img src={service.image} alt={service.alt ?? service.title} loading="lazy" />
+          <Image src={service.image} alt={service.alt ?? service.title} loading="lazy" priority/>
         )}
       </div>
       <h3 className={styles.serviceTitle}>{service.title}</h3>

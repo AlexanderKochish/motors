@@ -8,6 +8,7 @@ import ErrorBlock from "@/shared/components/error-block/error-block";
 import { useGallery } from "@/features/gallery/hooks/useGallery";
 import GalleryList from "@/features/gallery/components/gallery-list/gallery-list";
 import { useModalContext } from "@/shared/hooks/useModalContext";
+import Image from "next/image";
 
 export default function Gallery() {
   const { handleBookAppointment } = useModalContext();
@@ -25,7 +26,6 @@ export default function Gallery() {
     isErrorGallery,
   } = useGallery();
 
-  // Показываем скелетон во время загрузки
   if (isLoadingCategories || isLoadingGallery) {
     return <GallerySkeleton />;
   }
@@ -88,7 +88,8 @@ export default function Gallery() {
           >
             ×
           </button>
-          <img
+          <Image
+          priority
             src={selectedImage}
             alt="Enlarged view"
             className={styles.lightboxImage}

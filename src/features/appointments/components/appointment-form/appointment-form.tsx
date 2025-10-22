@@ -74,7 +74,7 @@ const AppointmentForm = ({ formSource = "main", onSuccess, serviceName }: Props)
           defaultValue={hasServiceNameInDatabase ? serviceName : ""}
           name="service_type"
           className={state.errors?.service_type ? styles.error : ""}
-           aria-label="Select Service Type"
+          aria-label="Select Service Type"
         >
           <option value="">Select Service</option>
 

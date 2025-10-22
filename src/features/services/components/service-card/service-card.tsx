@@ -14,7 +14,7 @@ const ServiceCard = ({ service, children, onBookAppointment }: Props) => {
     <div key={service.id} className={styles.serviceCard}>
       <div className={styles.serviceImage}>
         {service.image && (
-          <Image src={service.image} alt={service.alt ?? service.title} loading="lazy" priority/>
+          <Image src={service.image} alt={service.alt ?? service.title} loading="lazy" priority />
         )}
       </div>
       <h3 className={styles.serviceTitle}>{service.title}</h3>

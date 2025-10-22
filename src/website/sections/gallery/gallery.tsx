@@ -89,7 +89,7 @@ export default function Gallery() {
             ×
           </button>
           <Image
-          priority
+            priority
             src={selectedImage}
             alt="Enlarged view"
             className={styles.lightboxImage}

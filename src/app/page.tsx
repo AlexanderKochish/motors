@@ -11,8 +11,6 @@ export default async function Home() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({ queryKey: ["company-contact"], queryFn: getCompanyContact });
-  await queryClient.prefetchQuery({ queryKey: ["gallery"], queryFn: getGalleryList });
-  await queryClient.prefetchQuery({ queryKey: ["reviews"], queryFn: getApprovedReviews });
 
   return (
     <QueryProviders>
